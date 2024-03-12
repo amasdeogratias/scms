@@ -7,6 +7,11 @@ use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['role:super-admin']);
+    }
     /**
      * Display a listing of the resource.
      */
