@@ -26,7 +26,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.roles.create');
     }
 
     /**
@@ -34,7 +34,18 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required'
+        ]);
+        try {
+            Role::create([
+                "name" => $request->title
+            ]);
+            return redirect()->back()->with('session','Role created successfully');
+
+        }catch (\Exception $e){
+            throw new \Exception($e->getMessage());
+        }
     }
 
     /**
