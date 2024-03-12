@@ -25,6 +25,11 @@
                             <div class="card-header">
                                 <h3 class="card-title">Create Role</h3>
                             </div>
+                            @if (session('message'))
+                                <div class="alert alert-success">
+                                    {{ session('message') }}
+                                </div>
+                            @endif
                             <div class="card-body">
                                 <form action="{{ route('roles.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
@@ -33,7 +38,7 @@
                                             <label for="">Role Title</label>
                                             <input class="form-control @error('title') is-invalid @enderror" name="title" id="title" placeholder="Add Role title">
                                             @error('title')
-                                            <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                            <div class="badge badge-danger mt-2">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>

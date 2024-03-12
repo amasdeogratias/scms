@@ -41,7 +41,7 @@ class RoleController extends Controller
             Role::create([
                 "name" => $request->title
             ]);
-            return redirect()->back()->with('session','Role created successfully');
+            return redirect()->back()->with('message','Role created successfully');
 
         }catch (\Exception $e){
             throw new \Exception($e->getMessage());
