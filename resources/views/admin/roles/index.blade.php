@@ -26,7 +26,7 @@
                                 <a href="{{route('roles.create')}}" class="btn btn-success float-right"><i class="fa fa-plus-circle">Add Role</i></a>
                             </div>
                             <div class="card-body">
-                                <table class="table table-bordered table-hover" id="example2">
+                                <table class="table table-bordered table-striped" id="example2">
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -42,7 +42,12 @@
                                         <tr>
                                             <td>{{ $i++ }}</td>
                                             <td>{{ $role->name }}</td>
-                                            <td>{{ $role->name }}</td>
+                                            <td>
+                                                @foreach($role->permissions as $permission)
+                                                    <label class="badge badge-info">{{ $permission->name }},</label>
+                                                @endforeach
+                                            </td>
+
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -55,4 +60,19 @@
         </section>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        $(function () {
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+            });
+        });
+    </script>
+@endpush
+
 
