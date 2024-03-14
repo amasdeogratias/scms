@@ -21,7 +21,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.permissions.create');
     }
 
     /**
@@ -29,7 +29,17 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|string|min:3'
+        ]);
+        try {
+            Permission::create([
+                'name' => $request->title
+            ]);
+            return redirect()->back()->with('message', 'Permission Created successfully');
+        }catch (\Exception $exception){
+            return redirect()->back()->with('error', 'Problem in creating permission'.$exception->getMessage());
+        }
     }
 
     /**
