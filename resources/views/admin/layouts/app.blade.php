@@ -42,6 +42,7 @@
 <script src="{{ Vite::asset('resources/dist/js/pages/dashboard.js')}}"></script>
 <!-- select 2 -->
 <script src="{{ Vite::asset('resources/plugins/select2/js/select2.full.min.js') }}"></script>
+<script src="{{ Vite::asset('resources/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js') }}"></script>
 
 
 <!--datatables-->
