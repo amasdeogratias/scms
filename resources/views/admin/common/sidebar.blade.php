@@ -35,7 +35,7 @@
                         <p>Categories</p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{ in_array(Route::currentRouteName(), ['roles.index','permissions.index']) ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-user-alt"></i>
                         <p>

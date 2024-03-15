@@ -47,6 +47,11 @@
                                                     <label class="badge badge-info">{{ $permission->name }},</label>
                                                 @endforeach
                                             </td>
+                                            <td>
+                                                <a href="{{ route('roles.show',$role->id) }}" class="btn btn-primary btn-sm">Show</a>
+                                                <a href="{{ route('roles.edit',$role->id) }}" class="btn btn-success btn-sm">Edit</a>
+                                                <a href="{{ route('roles.destroy',$role->id) }}" class="btn btn-danger btn-sm">Delete</a>
+                                            </td>
 
                                         </tr>
                                         @endforeach
