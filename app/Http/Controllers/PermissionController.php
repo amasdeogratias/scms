@@ -64,7 +64,18 @@ class PermissionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|string'
+        ]);
+        try {
+            $permission = Permission::findOrFail($id);
+            $permission->name = $request->input('title');
+            $permission->save();
+            return redirect()->back()->with('message', 'Permission updated successfully...');
+
+        }catch (\Exception $exception){
+            return redirect()->back()->with(['error' => 'Problem in permission update'.$exception->getMessage()]);
+        }
     }
 
     /**
