@@ -24,15 +24,21 @@
                         <div class="card card-default">
                             <div class="card-header">
                                 <h3 class="card-title">Edit Role</h3>
+                                <a href="{{ route('roles.index') }}" class="btn btn-success float-right"><i class="fa fa-list"> View Roles</i> </a>
                             </div>
-                            @if (session('message'))
+                            @if (session('success'))
                                 <div class="alert alert-success">
-                                    {{ session('message') }}
+                                    {{ session('success') }}
+                                </div>
+                            @elseif(session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
                                 </div>
                             @endif
                             <div class="card-body">
                                 <form action="{{ route('roles.update', $role->id) }}" method="POST" enctype="multipart/form-data">
                                     @csrf
+                                    @method('PATCH')
                                     <div class="row">
                                         <div class="form-group col-md-12">
                                             <label for="">Role Title</label>
@@ -65,7 +71,7 @@
 
                                     <div class="form-group float-right">
                                         <button type="reset" class="btn btn-warning">Reset</button>
-                                        <button type="submit" class="btn btn-success">Save</button>
+                                        <button type="submit" class="btn btn-success">Update</button>
                                     </div>
                                 </form>
                             </div>
