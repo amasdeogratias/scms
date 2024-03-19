@@ -77,9 +77,24 @@ class RoleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'role_id' => 'required',
+            'title' => 'required',
+            'permission' => 'required|array',
+        ]);
+        try {
+            $role = Role::findOrFail($id);
+            $role->name = $request->input('title');
+            $role->save();
+
+            $role->syncPermissions($request->input('permission'));
+            return redirect()->back()->with('success','Role updated successfully');
+
+        }catch (\Exception $exception){
+            return redirect()->back()->with(['error' => 'Problem in updating role: ' . $exception->getMessage()]);
+        }
     }
 
     /**
