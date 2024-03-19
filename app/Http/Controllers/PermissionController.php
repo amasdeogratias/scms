@@ -55,7 +55,8 @@ class PermissionController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $permission = Permission::findById($id);
+        return view('admin.permissions.edit', compact('permission'));
     }
 
     /**
