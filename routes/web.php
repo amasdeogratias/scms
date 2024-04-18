@@ -24,4 +24,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(["middleware"=>'auth', "prefix"=>'users'], function (){
     Route::resource('roles', \App\Http\Controllers\RoleController::class);
     Route::resource('permissions', \App\Http\Controllers\PermissionController::class);
+    Route::get('/', [\App\Http\Controllers\UserController::class, 'index'])->name('users.all');
 });
