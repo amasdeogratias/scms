@@ -25,7 +25,7 @@
                         <div class="card card-info card-outline">
                             <div class="card-header">
                                 <h3 class="card-title">List of users</h3>
-                                <a href="" class="btn btn-success float-right"><i class="fa fa-plus-circle"></i> Add User </a>
+                                <a href="{{ route('users.create') }}" class="btn btn-success float-right"><i class="fa fa-plus-circle"></i> Add User </a>
                             </div>
                             <div class="card-body">
                                 <table class="table table-bordered table-striped table-hover" id="example2">
