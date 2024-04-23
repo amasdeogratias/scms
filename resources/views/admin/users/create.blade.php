@@ -27,6 +27,15 @@
                                 <h3 class="card-title"></h3>
                                 <a href="{{ route('users.all') }}" class="btn btn-success float-right"><i class="fa fa-list"> Users</i> </a>
                             </div>
+                            @if(session('message'))
+                                <div class="alert alert-success">
+                                    {{ session('message') }}
+                                </div>
+                            @elseif(session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
                             <div class="card-body">
                                 <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
