@@ -54,7 +54,20 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string|min:3',
+            'email' => 'required|email'
+        ]);
+        try {
+            $user = User::findOrFail($id);
+            $user->name = $request->input('name');
+            $user->email = $request->input('email');
+            $user->save();
+            return redirect()->back()->with('message', 'User updated successfully...');
+
+        }catch (\Exception $exception){
+            return redirect()->back()->with(['error' => 'Problem in user update'.$exception->getMessage()]);
+        }
     }
 
     /**
