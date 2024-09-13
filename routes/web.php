@@ -29,4 +29,5 @@ Route::group(["middleware"=>'auth', "prefix"=>'users'], function (){
     Route::post('store', [\App\Http\Controllers\UserController::class, 'store'])->name('users.store');
     Route::get('/{id}/edit', [\App\Http\Controllers\UserController::class, 'edit'])->name('users.edit');
     Route::patch('/{id}/update', [\App\Http\Controllers\UserController::class, 'update'])->name('users.update');
+    Route::patch('/{id}/destroy', [\App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');
 });

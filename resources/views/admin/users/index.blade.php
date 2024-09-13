@@ -27,6 +27,9 @@
                                 <h3 class="card-title">List of users</h3>
                                 <a href="{{ route('users.create') }}" class="btn btn-success float-right"><i class="fa fa-plus-circle"></i> Add User </a>
                             </div>
+                            @if(session('status'))
+                                <div class="alert alert-success">{{ $message }}</div>
+                            @endif
                             <div class="card-body">
                                 <table class="table table-bordered table-striped table-hover" id="example2">
                                     <thead>
@@ -54,7 +57,7 @@
                                             <td>
                                                 <a href="" class="btn btn-primary btn-sm">View</a>
                                                 <a href="{{route('users.edit', $user->id)}}" class="btn btn-info btn-sm">Edit</a>
-                                                <a href="" class="btn btn-danger btn-sm">Delete</a>
+                                                <a href="{{ route('users.destroy', $user->id) }}" class="btn btn-danger btn-sm">Delete</a>
                                             </td>
                                         </tr>
                                     @endforeach
