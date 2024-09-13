@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -22,7 +23,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $roles = Role::pluck('name', 'name')->all();
+        return view('admin.users.create', compact('roles'));
     }
 
     /**
@@ -33,7 +35,8 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required|string|min:3',
             'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed|min:6'
+            'password' => 'required|confirmed|min:6',
+            'roles' => 'required'
         ]);
         try {
             $user=User::create([
@@ -41,6 +44,7 @@ class UserController extends Controller
                "email" => $request->input('email'),
                "password" => Hash::make($request->input('password')),
             ]);
+            $user->syncRoles($request->input('roles'));
             if($user){
                 return redirect()->back()->with('message', 'User created successfully...');
             }else{
@@ -67,7 +71,9 @@ class UserController extends Controller
     public function edit(string $id)
     {
         $user = User::find($id);
-        return view('admin.users.edit', compact('user'));
+        $roles = Role::pluck('name', 'name')->all();
+        $userRoles = $user->roles->pluck('name', 'name')->all();
+        return view('admin.users.edit', compact('user','roles', 'userRoles'));
     }
 
     /**
@@ -77,13 +83,15 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|string|min:3',
-            'email' => 'required|email'
+            'email' => 'required|email',
+            'roles' => 'required'
         ]);
         try {
             $user = User::findOrFail($id);
             $user->name = $request->input('name');
             $user->email = $request->input('email');
             $user->save();
+            $user->syncRoles($request->input('roles'));
             return redirect()->back()->with('message', 'User updated successfully...');
 
         }catch (\Exception $exception){
