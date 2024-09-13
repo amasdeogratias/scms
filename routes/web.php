@@ -23,6 +23,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(["middleware"=>'auth', "prefix"=>'users'], function (){
     Route::resource('roles', \App\Http\Controllers\RoleController::class);
+    Route::get('roles/{id}/delete', [\App\Http\Controllers\RoleController::class, 'destroy'])->name('roles.destroy');
     Route::resource('permissions', \App\Http\Controllers\PermissionController::class);
     Route::get('permissions/{id}/delete', [\App\Http\Controllers\PermissionController::class, 'destroy'])->name('permissions.destroy');
     Route::get('/', [\App\Http\Controllers\UserController::class, 'index'])->name('users.all');

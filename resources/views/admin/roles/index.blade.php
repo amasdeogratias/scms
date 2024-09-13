@@ -25,6 +25,9 @@
                                 <h3 class="card-title">Role List</h3>
                                 <a href="{{route('roles.create')}}" class="btn btn-success float-right"><i class="fa fa-plus-circle">Add Role</i></a>
                             </div>
+                            @if(session('status'))
+                                <div class="alert alert-success">{{ session('status') }}</div>
+                            @endif
                             <div class="card-body">
                                 <table class="table table-bordered table-striped" id="example2">
                                     <thead>
