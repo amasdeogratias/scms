@@ -24,6 +24,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(["middleware"=>'auth', "prefix"=>'users'], function (){
     Route::resource('roles', \App\Http\Controllers\RoleController::class);
     Route::resource('permissions', \App\Http\Controllers\PermissionController::class);
+    Route::get('permissions/{id}/delete', [\App\Http\Controllers\PermissionController::class, 'destroy'])->name('permissions.destroy');
     Route::get('/', [\App\Http\Controllers\UserController::class, 'index'])->name('users.all');
     Route::get('create', [\App\Http\Controllers\UserController::class, 'create'])->name('users.create');
     Route::post('store', [\App\Http\Controllers\UserController::class, 'store'])->name('users.store');

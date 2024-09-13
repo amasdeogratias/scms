@@ -25,6 +25,9 @@
                                 <h3 class="card-title">List of Permissions</h3>
                                 <a href="{{ route('permissions.create') }}" class="btn btn-success float-right"><i class="fa fa-plus-circle">Add Permission</i> </a>
                             </div>
+                            @if(session('status'))
+                                <div class="alert alert-success">{{ session('status') }}</div>
+                            @endif
                             <div class="card-body">
                                 <table class="table table-bordered table-striped table-hover" id="example2">
                                     <thead>
