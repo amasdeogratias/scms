@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
         $superAdmin = User::firstOrCreate([
             'id'                => 1,
             'name'              => 'Deo Amas',
-            'email'             => 'super@admin.com',
+            'email'             => 'superadmin@gmail.com',
             'password'          => Hash::make('password'),
             'email_verified_at' => now(),
         ]);
@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
         $admin = User::firstOrCreate([
             'id'                => 2,
             'name'              => 'John Doe',
-            'email'             => 'admin@example.com',
+            'email'             => 'admin@gmail.com',
             'password'          => Hash::make('password'),
             'email_verified_at' => now(),
         ]);
