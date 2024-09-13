@@ -60,6 +60,15 @@
                                                 </span>
                                             @enderror
                                         </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="roles">{{ __('Roles') }}</label>
+                                            <select class="form-control" name="roles[]" id="roles" multiple>
+                                                <option value="">Select Role</option>
+                                                @foreach($roles as $role)
+                                                    <option value="{{ $role }}" {{ in_array($role, $userRoles) ? 'selected' : '' }}>{{ $role }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
 
                                     </div>
                                     <div class="form-group float-right">

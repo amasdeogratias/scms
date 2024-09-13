@@ -34,6 +34,7 @@
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>Email</th>
+                                        <th>Roles</th>
                                         <th></th>
                                     </tr>
                                     </thead>
@@ -43,6 +44,13 @@
                                             <td>{{ $user->id }}</td>
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
+                                            <td>
+                                                @if(!empty($user->getRoleNames()))
+                                                    @foreach($user->getRoleNames() as $rolename)
+                                                        <label class="badge badge-primary mx-1">{{ $rolename }}</label>
+                                                    @endforeach
+                                                @endif
+                                            </td>
                                             <td>
                                                 <a href="" class="btn btn-primary btn-sm">View</a>
                                                 <a href="{{route('users.edit', $user->id)}}" class="btn btn-info btn-sm">Edit</a>
