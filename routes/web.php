@@ -21,7 +21,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(["middleware"=>'auth', "prefix"=>'users'], function (){
+Route::group(["middleware"=>['role:super-admin|admin'], "prefix"=>'users'], function (){
     Route::resource('roles', \App\Http\Controllers\RoleController::class);
     Route::get('roles/{id}/delete', [\App\Http\Controllers\RoleController::class, 'destroy'])->name('roles.destroy');
     Route::resource('permissions', \App\Http\Controllers\PermissionController::class);
