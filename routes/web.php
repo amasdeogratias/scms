@@ -25,11 +25,11 @@ Route::group(["middleware"=>['role:super-admin|admin'], "prefix"=>'users'], func
     Route::resource('roles', \App\Http\Controllers\RoleController::class);
     Route::get('roles/{id}/delete', [\App\Http\Controllers\RoleController::class, 'destroy'])->name('roles.destroy');
     Route::resource('permissions', \App\Http\Controllers\PermissionController::class);
-    Route::get('permissions/{id}/delete', [\App\Http\Controllers\PermissionController::class, 'destroy'])->name('permissions.destroy');
+    Route::get('permissions/{id}/delete', [\App\Http\Controllers\PermissionController::class, 'destroy']);
     Route::get('/', [\App\Http\Controllers\UserController::class, 'index'])->name('users.all');
     Route::get('create', [\App\Http\Controllers\UserController::class, 'create'])->name('users.create');
     Route::post('store', [\App\Http\Controllers\UserController::class, 'store'])->name('users.store');
     Route::get('/{id}/edit', [\App\Http\Controllers\UserController::class, 'edit'])->name('users.edit');
     Route::patch('/{id}/update', [\App\Http\Controllers\UserController::class, 'update'])->name('users.update');
-    Route::patch('/{id}/destroy', [\App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');
+    Route::get('/{id}/destroy', [\App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');
 });
