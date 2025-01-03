@@ -48,10 +48,16 @@
                                                 </td>
                                                 <td>{{ $permission->id }}</td>
                                                 <td>{{ $permission->name }}</td>
-                                                <td>
+                                                <td style="display:flex; gape:4rem">
                                                     <a href="{{ route('permissions.show', $permission->id) }}" class="btn btn-primary btn-sm">View</a>
                                                     <a href="{{ route('permissions.edit', $permission->id) }}" class="btn btn-info btn-sm">Edit</a>
-                                                    <a href="{{ route('permissions.destroy', $permission->id) }}" class="btn btn-danger btn-sm">Delete</a>
+                                                    <form action="{{ route('permissions.destroy', $permission->id) }}" method="POST"
+                                                        onsubmit="return confirm('Are you sure you want to delete this Permission?')">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                                    </form>
+                                                    
                                                 </td>
                                             </tr>
                                         @endforeach
